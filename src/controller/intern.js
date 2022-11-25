@@ -12,6 +12,7 @@ const clgName =  /^([A-Za-z]+)$/
 //<<<<<<<<------------------- Create-Intern -------------------->>>>>>>>>>>>>
 
 const createIntern = async function(req,res){
+    res.setHeader('Access-Control-Allow-Origin','*')
     try{
         let data = req.body
         let {name,email,mobile} = data
@@ -74,6 +75,7 @@ const createIntern = async function(req,res){
 //<<<<<<<<------------------- Getting-College -------------------->>>>>>>>>>>>>
 
 const getCollege = async function(req,res){
+    res.setHeader('Access-Control-Allow-Origin','*')
     try{
         let collegeName = req.query.collegeName
         
@@ -97,7 +99,7 @@ const getCollege = async function(req,res){
             return res.status(404).send({status:false,message:"No intern Found from this College !"})
             }
         let finalData ={name:collegeName,fullName:findCllg.fullName,logoLink:findCllg.logoLink,
-            interns:[result]}
+            interns:result}
             
         res.status(200).send({status:true,data:finalData})
     }
